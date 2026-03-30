@@ -36,6 +36,28 @@ export default function ClutchLandingPage() {
       price: "₱1,099",
       image: "/products/active-hoodie.png",
     },
+
+    {
+      name: "Clutch Cap",
+      desc: "The perfect fusion of modern style and athletic performance, designed to keep you moving with confidence and comfort.",
+      price: "₱799",
+      image: "/products/cap.png",
+    }
+,
+    {
+      name: "Stadium-to-Street Tech Hoodie",
+      desc: " seamlessly blends high-performance athletic technology with urban style, perfect for transitioning from game day to everyday wear.",
+      price: "₱1,500",
+      image: "/products/tech hoodie.png",
+    }
+,
+    {
+      name: "Sleek Navy Jordan Jersey",
+      desc: "A sleek navy Jordan jersey that blends iconic basketball heritage with modern, breathable performance.",
+      price: "₱699",
+      image: "/products/jordan.png"
+      }
+
   ];
 
   const reasons = [
@@ -163,7 +185,7 @@ export default function ClutchLandingPage() {
           position: relative;
           overflow: hidden;
           background: 
-          linear-gradient(rgba(246,242,236,0.85), rgba(246,242,236,0.9)),
+          linear-gradient(rgba(246,242,236,0.7), rgba(246,242,236,0.7)),
           url("https://images.unsplash.com/photo-1517836357463-d25dfeac3438");
           background-size: cover;
           background-position: center;
@@ -952,7 +974,7 @@ export default function ClutchLandingPage() {
               <div className="contact-item">Facebook: Clutch Sports Apparel</div>
               <div className="contact-item">Instagram: @clutchsportswearapparel</div>
               <div className="contact-item">TikTok: @clutchsportswearapparel</div>
-              <div className="contact-item">Email: clutchsportswearapparel@gmail.com</div>
+              <div className="contact-item">Email:clutchsportswearapparel@gmail.com</div>
             </div>
           </div>
         </section>
