@@ -784,13 +784,6 @@ export default function ClutchLandingPage() {
             padding: 20px;
           }
 
-          .big-text {
-            font-size: 120px;
-            font-weight: 900;
-            color: rgba(0,0,0,0.04);
-            text-align: center;
-            margin: 60px 0;
-          }
 
           .product-image {
             height: 190px;
@@ -812,8 +805,6 @@ export default function ClutchLandingPage() {
                 <div className="brand-sub">Sports Apparel</div>
               </div>
             </div>
-
-            <h1 className="big-text">CLUTCH</h1>
 
             <nav className="nav-links">
               <a href="#collections">Collections</a>
