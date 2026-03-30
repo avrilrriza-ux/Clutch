@@ -949,10 +949,10 @@ export default function ClutchLandingPage() {
             </div>
 
             <div className="contact-list">
-              <div className="contact-item">Facebook: @clutchsportswear</div>
-              <div className="contact-item">Instagram: @clutchsportswear</div>
-              <div className="contact-item">TikTok: @clutchsportswear</div>
-              <div className="contact-item">Email: clutchsportswear@email.com</div>
+              <div className="contact-item">Facebook: Clutch Sports Apparel</div>
+              <div className="contact-item">Instagram: @clutchsportswearapparel</div>
+              <div className="contact-item">TikTok: @clutchsportswearapparel</div>
+              <div className="contact-item">Email: clutchsportswearapparel@gmail.com</div>
             </div>
           </div>
         </section>
