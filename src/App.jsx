@@ -1,4 +1,14 @@
+import { useState } from "react";
+
 export default function ClutchLandingPage() {
+const [selectedProduct, setSelectedProduct] = useState(null);
+const [selectedSize, setSelectedSize] = useState("");
+const [quantity, setQuantity] = useState(1);
+const [cart, setCart] = useState([]);
+const [selectedImage, setSelectedImage] = useState(null);
+const [imageIndex, setImageIndex] = useState(0);
+const [showCart, setShowCart] = useState(false);
+
   const collections = [
     {
       title: "Training Essentials",
@@ -17,46 +27,48 @@ export default function ClutchLandingPage() {
     },
   ];
 
+/*products*/
   const products = [
     {
-      name: "Performance Jersey",
-      desc: "Lightweight and breathable for training days and game moments.",
+      name: "Clutch Unisex Shadow Hoodie – Black",
+      desc: "Built for comfort with a sleek athletic look",
+      price: "₱999",
+      image: "/products/unisex shadow hoodie.png",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/unisex shadow hoodie.png",
+        "/products/unisex shadow hoodie f.png",
+        "/products/unisex shadow hoodie samp.png", 
+      ],
+    },
+    {
+      name: "Clutch Unisex Curve Hoodie – White & Orange",
+      desc: "Minimal, breathable, and made for everyday style.",
       price: "₱799",
-      image: "/products/performance-jersey.png",
+      image: "/products/curve h 1.png",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/curve h 1.png",      
+        "/products/curve h.png",
+        "/products/curve h 2.png",
+        "/products/curve h3.png",
+        "/products/curve h4.png",
+      ],    
     },
     {
-      name: "Training Shorts",
-      desc: "Flexible everyday sportswear made for movement and comfort.",
-      price: "₱599",
-      image: "/products/training-shorts.png",
-    },
-    {
-      name: "Active Hoodie",
-      desc: "A modern layer that blends street style with athletic function.",
-      price: "₱1,099",
-      image: "/products/active-hoodie.png",
-    },
-
-    {
-      name: "Clutch Cap",
-      desc: "The perfect fusion of modern style and athletic performance, designed to keep you moving with confidence and comfort.",
-      price: "₱799",
-      image: "/products/cap.png",
+      name: "Clutch Unisex PREMIUM Hoodie – White & Orange",
+      desc: "A clean sport-inspired hoodie designed for comfort and everyday wear.",
+      price: "₱899",
+      image: "/products/prem hoodie 1.png",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/prem hoodie 1.png",
+        "/products/prem hoodie.png",
+        "/products/premium hoodie 1.png", 
+        "/products/premium hoodie 2.png", 
+        "/products/premium hoodie samp.png", 
+           ],      
     }
-,
-    {
-      name: "Stadium-to-Street Tech Hoodie",
-      desc: " seamlessly blends high-performance athletic technology with urban style, perfect for transitioning from game day to everyday wear.",
-      price: "₱1,500",
-      image: "/products/tech hoodie.png",
-    }
-,
-    {
-      name: "Sleek Navy Jordan Jersey",
-      desc: "A sleek navy Jordan jersey that blends iconic basketball heritage with modern, breathable performance.",
-      price: "₱699",
-      image: "/products/jordan.png"
-      }
 
   ];
 
@@ -435,7 +447,6 @@ export default function ClutchLandingPage() {
         }
 
         .collection-grid,
-        .product-grid,
         .reason-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -519,7 +530,6 @@ export default function ClutchLandingPage() {
           z-index: 1;
         }
 
-        .product-card,
         .reason-card {
           background: rgba(255,255,255,0.72);
           border: 1px solid rgba(226, 137, 34, 0.14);
@@ -527,20 +537,63 @@ export default function ClutchLandingPage() {
           box-shadow: 0 10px 28px rgba(0,0,0,0.03);
         }
 
-        .product-image {
-          height: 250px;
-          margin-bottom: 18px;
-          border-radius: 22px;
-          overflow: hidden;
-          background: linear-gradient(135deg, #f3cf38 0%, #e28922 100%);
-        }
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
 
-        .product-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
+.product-card {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  padding-bottom: 34px;
+  height: 100%;
+}
+
+.product-card h3 {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.product-card p {
+  min-height: 120px;
+  text-align: center;
+}
+
+.price {
+  margin-top: auto;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.product-image {
+  width: 100%;
+  height: 320px;
+  margin-bottom: 18px;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #f7f4ef;
+  border: 1px solid rgba(226, 137, 34, 0.14);
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 14px;
+  display: block;
+}
 
         .product-topline {
           margin-bottom: 10px;
@@ -551,7 +604,7 @@ export default function ClutchLandingPage() {
           letter-spacing: 2px;
         }
 
-        .product-card h3,
+  
         .reason-card h3 {
           margin-bottom: 12px;
           font-size: 24px;
@@ -559,7 +612,7 @@ export default function ClutchLandingPage() {
           text-transform: uppercase;
         }
 
-        .product-card p,
+
         .reason-card p {
           color: #363636;
           line-height: 1.7;
@@ -688,7 +741,6 @@ export default function ClutchLandingPage() {
         @media (max-width: 900px) {
           .category-strip,
           .collection-grid,
-          .product-grid,
           .reason-grid,
           .contact-inner {
             grid-template-columns: 1fr;
@@ -815,6 +867,457 @@ export default function ClutchLandingPage() {
             flex-direction: column;
           }
         }
+
+
+.product-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 26px;
+  padding-top: 6px;
+}
+
+.cart-btn,
+.buy-btn,
+.confirm-btn {
+  border: none;
+  padding: 13px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.cart-btn {
+  background: #ffffff;
+  color: #111111;
+  border: 1px solid rgba(17,17,17,0.15);
+}
+
+.buy-btn,
+.confirm-btn {
+  background: #e28922;
+  color: #ffffff;
+}
+
+.variant-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 40px;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  border: none;
+  background: #111111;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+.variant-title {
+  margin: 16px 0 8px;
+  font-weight: 900;
+}
+
+.variant-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.variant-options button {
+  min-width: 48px;
+  height: 42px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,17,17,0.15);
+  background: #ffffff;
+  color: #111111;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.confirm-btn {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.shop-modal {
+  width: min(100%, 1050px);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: 430px 1fr;
+  gap: 34px;
+  position: relative;
+}
+
+.shop-left {
+  width: 100%;
+}
+
+.main-preview {
+  width: 100%;
+  height: 430px;
+  background: #f7f4ef;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.main-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 18px;
+}
+
+.shop-right {
+  padding: 18px 10px;
+}
+
+.shop-right h2 {
+  font-size: 32px;
+  margin: 10px 0 12px;
+  text-transform: uppercase;
+}
+
+.shop-desc {
+  margin-bottom: 24px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.variant-group {
+  margin-bottom: 22px;
+}
+
+.variant-group p,
+.quantity-row p {
+  margin-bottom: 10px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.quantity-row {
+  margin-bottom: 24px;
+}
+
+.quantity-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity-box button {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  border: none;
+  background: #111;
+  color: white;
+  font-size: 18px;
+}
+
+.shop-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.shop-buttons button {
+  flex: 1;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+@media (max-width: 900px) {
+  .shop-modal {
+    grid-template-columns: 1fr;
+  }
+
+  .main-preview {
+    height: 300px;
+  }
+}
+
+.product-image {
+  cursor: pointer;
+}
+
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+.gallery-img {
+  max-width: 80vw;
+  max-height: 82vh;
+  object-fit: contain;
+  border-radius: 18px;
+  background: #f6f2ec;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #111;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #111;
+  font-size: 38px;
+  cursor: pointer;
+}
+
+.gallery-arrow.left {
+  left: 40px;
+}
+
+.gallery-arrow.right {
+  right: 40px;
+}
+
+.active-variant {
+  background: #e28922 !important;
+  color: white !important;
+  border-color: #e28922 !important;
+}
+
+.cart-count {
+  font-weight: 900;
+  color: #e28922;
+}
+
+.cart-nav {
+  border: none;
+  background: #e28922 !important;
+  color: #ffffff !important;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 88px;
+}
+
+.cart-modal {
+  width: min(100%, 520px);
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  position: relative;
+}
+
+.cart-modal h2 {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(17,17,17,0.1);
+}
+
+.cart-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  background: #f7f4ef;
+  border-radius: 14px;
+}
+
+.cart-page-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 40px;
+  overflow-y: auto;
+}
+
+.cart-page {
+  width: min(100%, 1100px);
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  position: relative;
+}
+
+.cart-page h2 {
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.cart-header,
+.cart-row {
+  display: grid;
+  grid-template-columns: 2.4fr 1fr 1fr 1fr 1fr 0.8fr;
+  align-items: center;
+  gap: 18px;
+}
+
+.cart-header {
+  padding: 16px 18px;
+  background: #f7f4ef;
+  color: #666;
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.cart-row {
+  padding: 18px;
+  border-bottom: 1px solid rgba(17,17,17,0.1);
+}
+
+.cart-product {
+  display: grid;
+  grid-template-columns: 20px 82px 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.cart-product img {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  background: #f7f4ef;
+  border-radius: 12px;
+}
+
+.cart-product h4 {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.cart-qty {
+  display: flex;
+  align-items: center;
+}
+
+.cart-qty button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(17,17,17,0.14);
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.cart-qty span {
+  width: 42px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-top: 1px solid rgba(17,17,17,0.14);
+  border-bottom: 1px solid rgba(17,17,17,0.14);
+}
+
+.cart-total {
+  color: #e28922;
+  font-weight: 900;
+}
+
+.delete-btn {
+  border: none;
+  background: transparent;
+  color: #e28922;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.empty-cart {
+  padding: 30px;
+  text-align: center;
+  color: #777;
+}
+
+.cart-footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(17,17,17,0.1);
+}
+
+.cart-summary {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.cart-summary span {
+  color: #e28922;
+  margin-left: 10px;
+}
+
+.checkout-btn {
+  border: none;
+  background: #e28922;
+  color: #ffffff;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.checkout-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
       `}</style>
 
       <div className="page">
@@ -828,13 +1331,16 @@ export default function ClutchLandingPage() {
               </div>
             </div>
 
-            <nav className="nav-links">
-              <a href="#collections">Collections</a>
-              <a href="#products">Products</a>
-              <a href="#about">About</a>
-              <a href="#contact">Contact</a>
-            </nav>
-          </div>
+<nav className="nav-links">
+  <a href="#collections">Collections</a>
+  <a href="#products">Products</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+<button className="cart-nav" onClick={() => setShowCart(true)}>
+  Cart: {cart.length}
+</button></nav>          
+
+</div>
         </header>
 
         <section className="hero">
@@ -904,25 +1410,42 @@ export default function ClutchLandingPage() {
 
         <section className="section" id="products">
           <div className="section-head">
-            <div className="section-label">Core Products</div>
+            <div className="section-label">Products</div>
             <h2>Built for motion</h2>
             <p className="section-desc">
-              These sample products can be used for your class presentation now, then replaced with
-              your final apparel concepts later.
+              Performance-driven apparel designed for athletes, creators, 
+              and everyday movers who want style without sacrificing comfort.
             </p>
           </div>
 
           <div className="product-grid">
             {products.map((product) => (
               <div className="product-card" key={product.name}>
-                <div className="product-image">
-                  <img src={product.image} alt={product.name} />
-                </div>
+                <div
+  className="product-image"
+  onClick={() => {
+    setSelectedImage(product);
+    setImageIndex(0);
+  }}
+>
+  <img src={product.image} alt={product.name} />
+</div>
                 <div className="product-topline">Clutch Apparel</div>
                 <h3>{product.name}</h3>
                 <p>{product.desc}</p>
                 <div className="price">{product.price}</div>
-                <a href="#contact" className="btn-secondary">View Details</a>
+                <div className="product-actions">
+  <button className="cart-btn" onClick={() => setSelectedProduct(product)}>
+    Add to Cart
+  </button>
+
+  <button className="buy-btn" onClick={() => setSelectedProduct(product)}>
+    Buy Now
+  </button>
+</div>
+
+
+
               </div>
             ))}
           </div>
@@ -978,6 +1501,204 @@ export default function ClutchLandingPage() {
             </div>
           </div>
         </section>
+
+{selectedProduct && (
+  <div className="variant-overlay">
+    <div className="shop-modal">
+      <button className="close-btn" onClick={() => setSelectedProduct(null)}>
+        ×
+      </button>
+
+
+      <div className="shop-left">
+        <div className="main-preview">
+          <img src={selectedProduct.image} alt={selectedProduct.name} />
+        </div>
+      </div>
+
+      <div className="shop-right">
+        <div className="product-topline">Clutch Apparel</div>
+
+        <h2>{selectedProduct.name}</h2>
+        <div className="price">{selectedProduct.price}</div>
+
+        <p className="shop-desc">{selectedProduct.desc}</p>
+
+
+<div className="variant-group">
+  <p>Size</p>
+  <div className="variant-options">
+    {selectedProduct.sizes?.map((size) => (
+      <button
+        key={size}
+        className={selectedSize === size ? "active-variant" : ""}
+        onClick={() => setSelectedSize(size)}
+      >
+        {size}
+      </button>
+    ))}
+  </div>
+</div>
+
+<div className="quantity-row">
+  <p>Quantity</p>
+  <div className="quantity-box">
+    <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+    <span>{quantity}</span>
+    <button onClick={() => setQuantity(quantity + 1)}>+</button>
+  </div>
+</div>
+
+<div className="shop-buttons">
+  <button
+    className="cart-btn"
+    onClick={() => {
+      if (!selectedSize) {
+        alert("Please select a size first.");
+        return;
+      }
+
+      setCart([
+        ...cart,
+        {
+          ...selectedProduct,
+          selectedSize,
+          quantity,
+        },
+      ]);
+
+      alert("Added to cart!");
+      setSelectedProduct(null);
+      setSelectedSize("");
+      setQuantity(1);
+    }}
+  >
+    Add To Cart
+  </button>
+
+  <button className="buy-btn">
+    Buy Now
+  </button>
+</div>      </div>
+    </div>
+  </div>
+)}
+
+{selectedImage && (
+  <div className="gallery-overlay">
+    <button className="gallery-close" onClick={() => setSelectedImage(null)}>
+      ×
+    </button>
+
+    <button
+      className="gallery-arrow left"
+      onClick={() =>
+        setImageIndex(
+          imageIndex === 0
+            ? selectedImage.gallery.length - 1
+            : imageIndex - 1
+        )
+      }
+    >
+      ‹
+    </button>
+
+    <img
+      src={selectedImage.gallery[imageIndex]}
+      alt={selectedImage.name}
+      className="gallery-img"
+    />
+
+    <button
+      className="gallery-arrow right"
+      onClick={() =>
+        setImageIndex(
+          imageIndex === selectedImage.gallery.length - 1
+            ? 0
+            : imageIndex + 1
+        )
+      }
+    >
+      ›
+    </button>
+  </div>
+)}
+        
+{showCart && (
+  <div className="cart-page-overlay">
+    <div className="cart-page">
+      <button className="close-btn" onClick={() => setShowCart(false)}>×</button>
+
+      <h2>Shopping Cart</h2>
+
+      {cart.length === 0 ? (
+        <p className="empty-cart">Your cart is empty.</p>
+      ) : (
+        <>
+          <div className="cart-header">
+            <span>Product</span>
+            <span>Variation</span>
+            <span>Unit Price</span>
+            <span>Quantity</span>
+            <span>Total Price</span>
+            <span>Action</span>
+          </div>
+
+          {cart.map((item, index) => (
+            <div className="cart-row" key={index}>
+              <div className="cart-product">
+                <input type="checkbox" />
+                <img src={item.image} alt={item.name} />
+                <h4>{item.name}</h4>
+              </div>
+
+              <div>Size: {item.selectedSize}</div>
+
+              <div>{item.price}</div>
+
+              <div className="cart-qty">
+                <button>-</button>
+                <span>{item.quantity}</span>
+                <button>+</button>
+              </div>
+
+              <div className="cart-total">{item.price}</div>
+
+<button
+  className="delete-btn"
+  onClick={() => {
+    setCart(cart.filter((_, i) => i !== index));
+  }}
+>
+  Delete
+</button>
+
+            </div>
+          ))}
+
+          <div className="cart-footer">
+  <div className="cart-summary">
+    Total:
+    <span>
+      ₱
+      {cart.reduce(
+        (total, item) =>
+          total +
+          parseInt(item.price.replace("₱", "")) * item.quantity,
+        0
+      )}
+    </span>
+  </div>
+
+  <button className="checkout-btn">
+    Proceed to Checkout
+  </button>
+</div>
+        </>
+      )}
+    </div>
+  </div>
+)}
 
         <footer className="footer">
           <div className="footer-inner">
