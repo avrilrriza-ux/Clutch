@@ -68,8 +68,76 @@ const [showCart, setShowCart] = useState(false);
         "/products/premium hoodie 2.png", 
         "/products/premium hoodie samp.png", 
            ],      
+    },
+    {
+      name: "Clutch Longsleeve – tri-color",
+      desc: "Designed for training, running, and active lifestyles while keep you feeling cool, focused, and performance-ready",
+      price: "₱1199",
+      image: "/products/longsleeve-2color.jpg",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/longsleeve-2color.jpg",
+        "/products/3color.jpg",
+      ],
+    },
+    {
+      name: "Clutch Longsleeve – Black",
+      desc: "Designed for training, running, and active lifestyles while keep you feeling cool, focused, and performance-ready.",
+      price: "₱1199",
+      image: "/products/longsleeve-black.jpg",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/longsleeve-black.jpg",
+        "/products/longsleeve-black.png"
+      ],
+    },
+    {
+      name: "Clutch Longsleeve – White & Orange",
+      desc: "Designed for training, running, and active lifestyles while keep you feeling cool, focused, and performance-ready.",
+      price: "₱1199",
+      image: "/products/longsleeve-orange.jpg",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/longsleeve-orange.jpg",
+        "/products/longsleeve-orange.png"
+      ],
+    },
+    {
+      name: "Clutch Drifit – White & Black",
+      desc: "Breathable, sweat-ready fabric and performance-focused comfort",
+      price: "₱899",
+      image: "/products/drifit-v1.png",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/drifit-v1.png",
+        "/products/drifit-v2.png",
+        "/products/drifit-vshirt.png"
+      ],
+    },
+    {
+      name: "Clutch Drifit – Black",
+      desc: "Breathable, sweat-ready fabric and performance-focused comfort.",
+      price: "₱899",
+      image: "/products/drifit-jk1.png",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/drifit-jk1.png",
+        "/products/drifit-jk2.png",
+        "/products/drifit-jkshirt.png"
+      ],
+    },
+    {
+      name: "Clutch Drifit – White & Orange",
+      desc: "Breathable, sweat-ready fabric and performance-focused comfort.",
+      price: "₱899",
+      image: "/products/drifit-girl.png",
+      sizes: ["S", "M", "L", "XL"],
+      gallery: [
+        "/products/drifit-girl.png",
+        "/products/drifit-girl2.png",
+        "/products/drifit-girl shirt.png"
+      ],
     }
-
   ];
 
   const reasons = [
@@ -539,7 +607,7 @@ const [showCart, setShowCart] = useState(false);
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   align-items: stretch;
 }
